@@ -1,0 +1,23 @@
+name: Compilar e testar CP5
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  testes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+      - run: chmod +x mvnw
+      - run: ./mvnw -B clean verify
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: relatorios-cp5
+          path: |
+            target/surefire-reports/
+            target/site/jacoco/

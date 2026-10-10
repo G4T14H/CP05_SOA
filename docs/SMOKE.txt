@@ -1,0 +1,15 @@
+GET /alunos: 401
+POST /auth/login: 200
+POST /alunos: 201
+POST /instrutores: 201
+POST /instrucoes: 201
+PATCH /instrucoes/1/cancelar: 200
+GET /enderecos/01001-000: 200
+POST /usuarios: 201
+POST /auth/login: 200
+GET /usuarios: 403
+POST /auth/login: 200
+GET /alunos/1: 200
+GET /instrucoes/1: 200
+Persistência H2 em arquivo após reinício: OK
+ViaCEP: servidor HTTP simulado local, não chamada ao serviço público.

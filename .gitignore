@@ -1,0 +1,7 @@
+target/
+dados/
+release/*.jar
+.idea/
+*.iml
+.env
+*.log

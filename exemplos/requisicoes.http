@@ -1,0 +1,45 @@
+# VS Code REST Client: copie o token do login para a variável abaixo.
+@base = http://localhost:8080
+@token = COLE_O_TOKEN_AQUI
+
+### Login
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{"username":"admin","senha":"admin123"}
+
+### Criar aluno
+POST {{base}}/alunos
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"nome":"Aluno Exemplo","email":"aluno@example.com","telefone":"11999999999","cpf":"12345678901","endereco":{"logradouro":"Rua Exemplo","numero":"10","bairro":"Centro","cidade":"São Paulo","uf":"SP","cep":"01001000"}}
+
+### Criar instrutor
+POST {{base}}/instrutores
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"nome":"Instrutor Exemplo","email":"instrutor@example.com","telefone":"11888888888","cnh":"98765432100","especialidade":"CARROS","endereco":{"logradouro":"Rua Exemplo","bairro":"Centro","cidade":"São Paulo","uf":"SP","cep":"01001000"}}
+
+### Listar alunos
+GET {{base}}/alunos?page=0&size=10
+Authorization: Bearer {{token}}
+
+### Consultar API externa
+GET {{base}}/enderecos/01001-000
+Authorization: Bearer {{token}}
+
+### Agendar: ajuste IDs e data futura (segunda a sábado).
+POST {{base}}/instrucoes
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"alunoId":1,"instrutorId":1,"dataHora":"2030-06-06T10:00:00"}
+
+### Cancelar: ajuste ID; exige 24h de antecedência.
+PATCH {{base}}/instrucoes/1/cancelar
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"motivo":"ALUNO_DESISTIU"}
